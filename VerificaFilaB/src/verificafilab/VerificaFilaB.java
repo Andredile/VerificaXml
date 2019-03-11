@@ -33,7 +33,7 @@ public class VerificaFilaB {
         
         try {
             while(scelta!=0){
-            System.out.println("1)Visualizza inforomazioni");
+            System.out.println("1)Visualizza informazioni");
             System.out.println("2)visualizzare il totale di Vino");
             System.out.println("3)regione ha prodotto piu’ I.G.T");
             System.out.println("4)Quale regione ,in tutto il documento ha il Totale maggiore");
@@ -42,19 +42,32 @@ public class VerificaFilaB {
             scelta = tastiera.nextInt();
             switch(scelta){
                 case 1:
-                    System.out.println("inserisci giorno");
-
+                    System.out.println("inserisci anno");
+                    int anno = tastiera.nextInt();
+                    System.out.println("inserisci regione");
+                    String regione = tastiera.next();
+                    lista = dom.parseDocument(anno,regione);
+                    
+                    for(Informazioni i : lista){
+                        System.out.print(i.getAnno());
+                        System.out.print(i.getRegione());
+                        System.out.print(i.getDoc_e_docg());
+                        System.out.print(i.getIgt());
+                        System.out.print(i.getDaTavola());
+                    }
                     break;
                 case 2:
-                    System.out.println("inserisci il nome del prof");
-
+                    System.out.println("inserisci anno");
+                    int anno1 = tastiera.nextInt();
+                    int tot = dom.parseTotale(anno1);
+                    System.out.println("il totale da tavola per l'anno " + anno1 + " è " + tot);
                     break;
                 case 3:
-                    System.out.println("inserisci il nome del prof");
-
+                    String regioneMaggiore = dom.RegioneProduttiva();
+                    System.out.println("la regione che ha prodotto piu igp è" + regioneMaggiore);
                     break;
                 case 4:
-                    System.out.println("inserisci il nome del prof");
+                    
 
                     break;    
                 case 0:
@@ -65,10 +78,5 @@ public class VerificaFilaB {
         }
         } catch (Exception e) {
         }
-        
-        
-        
-        
     }
-    
 }
